@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :brand do
-    name "Kodak"
-    url_name "kodak"
+    name "Canon"
+    url_name "canon"
   end
-
 end

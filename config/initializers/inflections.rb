@@ -13,3 +13,8 @@
 # ActiveSupport::Inflector.inflections do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.plural /^(lens)$/i, '\1es'
+  inflect.singular /^(lens)es$/i, '\1'
+end

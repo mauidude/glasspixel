@@ -1,10 +1,9 @@
-require 'spec_helper'
+require "spec_helper"
 
-describe Brand do
-  subject { Factory(:brand) }
+describe Camera do
+  subject { Factory(:camera) }
 
-  it { should have_many :cameras }
-  it { should have_many :lenses }
+  it { should belong_to :brand }
 
   it { should validate_uniqueness_of :url_name }
   it { should validate_presence_of :url_name }
@@ -13,5 +12,5 @@ describe Brand do
   it { should validate_presence_of :name }
   it { should ensure_length_of(:name).is_at_most 50 }
 
-  its(:to_param) { should == "canon" }
+  its(:to_param) { should == "7d" }
 end

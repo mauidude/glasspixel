@@ -1,4 +1,7 @@
 class Brand < ActiveRecord::Base
+  has_many :cameras
+  has_many :lenses
+
   validates :name,
             :presence => true,
             :length => { :maximum => 50 }
