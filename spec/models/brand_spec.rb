@@ -9,4 +9,6 @@ describe Brand do
 
   it { should validate_presence_of :name }
   it { should ensure_length_of(:name).is_at_most 50 }
+
+  its(:to_param) { should == "kodak" }
 end
