@@ -5,7 +5,7 @@ describe Camera do
 
   it { should belong_to :brand }
 
-  it { should validate_uniqueness_of :url_name }
+  it { should validate_uniqueness_of(:url_name).case_insensitive }
   it { should validate_presence_of :url_name }
   it { should ensure_length_of(:url_name).is_at_most  50 }
 

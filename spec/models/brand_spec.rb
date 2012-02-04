@@ -6,7 +6,7 @@ describe Brand do
   it { should have_many :cameras }
   it { should have_many :lenses }
 
-  it { should validate_uniqueness_of :url_name }
+  it { should validate_uniqueness_of(:url_name).case_insensitive }
   it { should validate_presence_of :url_name }
   it { should ensure_length_of(:url_name).is_at_most  50 }
 

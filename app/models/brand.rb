@@ -1,4 +1,6 @@
 class Brand < ActiveRecord::Base
+  include Exifable
+
   has_many :cameras
   has_many :lenses
 
