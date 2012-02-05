@@ -8,6 +8,8 @@ describe PhotoMetadata do
   it { should belong_to :camera }
   it { should belong_to :lens }
 
+  it { should serialize :exif }
+
   it { should validate_presence_of :width }
   it { should validate_presence_of :height }
   it { should validate_numericality_of :width }
