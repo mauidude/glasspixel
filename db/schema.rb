@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20120202045447) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "orientation"
-    t.text     "exif",               :null => false
+    t.text     "exif"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
