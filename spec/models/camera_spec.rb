@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Camera do
-  subject { Factory(:camera) }
+  subject { Factory :camera }
 
   it { should belong_to :brand }
 
@@ -12,5 +12,15 @@ describe Camera do
   it { should validate_presence_of :name }
   it { should ensure_length_of(:name).is_at_most 50 }
 
-  its(:to_param) { should == "7d" }
+  context "#to_param" do
+    it "should be equal #url_name" do
+      subject.to_param.should == subject.url_name
+    end
+  end
+
+  context "#find_by_id" do
+    it "should do lookup on url name" do
+      Camera.find_by_id(subject.url_name).should == subject
+    end
+  end
 end

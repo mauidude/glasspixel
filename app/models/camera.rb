@@ -13,7 +13,7 @@ class Camera < ActiveRecord::Base
             :uniqueness =>  { :case_sensitive => false }
 
   def self.find_by_id(url_name)
-    Brand.find_by_url_name(url_name)
+    Camera.find_by_url_name(url_name)
   end
 
   def to_param
