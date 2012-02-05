@@ -8,6 +8,14 @@ describe PhotoMetadata do
   it { should belong_to :camera }
   it { should belong_to :lens }
 
+  it { should validate_presence_of :width }
+  it { should validate_presence_of :height }
+  it { should validate_numericality_of :width }
+  it { should validate_numericality_of :height }
+
+  it { should allow_mass_assignment_of :photo }
+  it { should_not allow_mass_assignment_of :raw_exif }
+
   it { should have_attached_file(:photo) }
   it { should validate_attachment_presence(:photo) }
   it { should validate_attachment_content_type(:photo).
@@ -46,6 +54,8 @@ describe PhotoMetadata do
       its (:orientation) { should == EXIFR::TIFF::Orientation.new(1,:TopLeft) }
       its (:camera) { should == @camera }
       its (:brand) { should == @brand }
+      its (:width) { should == 4272 }
+      its (:height) { should == 2848 }
       #its (:lens) { should == @lens }
       it "should read lens data"
     end

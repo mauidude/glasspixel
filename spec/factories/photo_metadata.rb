@@ -3,4 +3,6 @@ include ActionDispatch::TestProcess
 
 Factory.define :photo_metadata do |m|
   m.photo { fixture_file_upload("spec/assets/images/IMG_1299.JPG", "image/jpeg") }
+  m.width { 100 }
+  m.height { 100 }
 end

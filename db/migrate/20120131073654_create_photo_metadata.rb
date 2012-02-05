@@ -12,6 +12,8 @@ class CreatePhotoMetadata < ActiveRecord::Migration
       t.float :latitude
       t.float :longitude
       t.string :orientation
+      t.integer :width, :null => false
+      t.integer :height, :null => false
 
       t.text :exif
       t.has_attached_file :photo

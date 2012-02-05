@@ -3,6 +3,14 @@ class PhotoMetadata < ActiveRecord::Base
   belongs_to :camera
   belongs_to :lens
 
+  validates :width,
+            :presence => true,
+            :numericality => { :only_integer => true, :greater_than => 0 }
+
+  validates :height,
+            :presence => true,
+            :numericality => { :only_integer => true, :greater_than => 0 }
+
   has_attached_file :photo,
                     :styles =>
                         {
@@ -21,6 +29,7 @@ class PhotoMetadata < ActiveRecord::Base
 
   serialize :exif, Hash
 
+  attr_accessible :photo
 
 
   #before_validation :extract_exif_data, :on => :create
@@ -51,6 +60,8 @@ class PhotoMetadata < ActiveRecord::Base
     self.latitude = @raw_exif.gps.try(:latitude)
     self.longitude = @raw_exif.gps.try(:longitude)
     self.orientation = @raw_exif.try(:orientation)
+    self.width = @raw_exif.try(:width)
+    self.height = @raw_exif.try(:height)
 
 
     self.exif = @raw_exif.to_hash
