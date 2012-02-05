@@ -7,7 +7,7 @@ gem 'rails', '3.2.0'
 
 gem 'sqlite3'
 
-gem 'exifr'
+gem 'exifr', :git => "git://github.com/saravk/exifr.git"
 gem 'paperclip', '~> 2.5.0'
 
 

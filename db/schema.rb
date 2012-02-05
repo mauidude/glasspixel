@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20120202045447) do
   add_index "cameras", ["url_name"], :name => "index_cameras_on_url_name", :unique => true
 
   create_table "exif_names", :force => true do |t|
-    t.string  "exifable_type", :limit => 50,  :null => false
     t.integer "exifable_id",                  :null => false
+    t.string  "exifable_type",                :null => false
     t.string  "name",          :limit => 128, :null => false
   end
 

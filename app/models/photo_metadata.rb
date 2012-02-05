@@ -1,4 +1,8 @@
 class PhotoMetadata < ActiveRecord::Base
+  belongs_to :brand
+  belongs_to :camera
+  belongs_to :lens
+
   has_attached_file :photo,
                     :styles =>
                         {
@@ -31,8 +35,13 @@ class PhotoMetadata < ActiveRecord::Base
   def extract_exif_data
     @raw_exif = EXIFR::JPEG.new(photo.uploaded_file.open)
 
-    #model_name = @raw_exif.model
-    #lens_name = @raw_exif.maker_note.lens
+    make_name = @raw_exif.make
+    model_name = @raw_exif.model
+    #lens_name = @raw_exif.lens_model
+
+    self.brand = Brand.find_by_exif_name(make_name) unless model_name.blank?
+    self.camera = Camera.find_by_exif_name(model_name) unless model_name.blank?
+    #self.lens = Lens.find_by_exif_name(lens_name) unless lens_name.blank?
 
     self.taken_at = @raw_exif.date_time_original
     self.exposure_time = @raw_exif.try(:exposure_time)

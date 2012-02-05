@@ -1,8 +1,7 @@
 class CreateExifNames < ActiveRecord::Migration
   def change
     create_table :exif_names do |t|
-      t.string :exifable_type, :null => false, :limit => 50
-      t.references :exifable, :null =>false
+      t.references :exifable, :null =>false, :polymorphic => true
       t.string :name, :null => false, :limit => 128
     end
 
