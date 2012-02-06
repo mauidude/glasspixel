@@ -7,6 +7,7 @@ describe PhotoMetadata do
   it { should belong_to :brand }
   it { should belong_to :camera }
   it { should belong_to :lens }
+  it { should have_many :ratings }
 
   it { should serialize :exif }
 
@@ -17,6 +18,9 @@ describe PhotoMetadata do
 
   it { should allow_mass_assignment_of :photo }
   it { should_not allow_mass_assignment_of :raw_exif }
+
+  it { should_not allow_mass_assignment_of :rating_sum }
+  it { should_not allow_mass_assignment_of :rating_count }
 
   it { should have_attached_file(:photo) }
   it { should validate_attachment_presence(:photo) }
@@ -61,6 +65,13 @@ describe PhotoMetadata do
       #its (:lens) { should == @lens }
       it "should read lens data"
     end
+  end
 
+  its (:rating) { should == 0 }
+
+  context "#rating" do
+    subject { Factory :rated_photo_metadata }
+
+    its (:rating) { should == 2.5 }
   end
 end

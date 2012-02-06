@@ -2,6 +2,7 @@ class PhotoMetadata < ActiveRecord::Base
   belongs_to :brand
   belongs_to :camera
   belongs_to :lens
+  has_many :ratings
 
   validates :width,
             :presence => true,
@@ -38,6 +39,10 @@ class PhotoMetadata < ActiveRecord::Base
     extract_exif_data if @raw_exif.nil?
 
     @raw_exif
+  end
+
+  def rating
+    rating_count == 0 ? 0 : (rating_sum / rating_count.to_f)
   end
 
   private

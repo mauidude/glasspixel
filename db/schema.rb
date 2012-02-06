@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120205083228) do
+ActiveRecord::Schema.define(:version => 20120205212101) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 50, :null => false
@@ -63,15 +63,23 @@ ActiveRecord::Schema.define(:version => 20120205083228) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "orientation"
-    t.integer  "width",              :null => false
-    t.integer  "height",             :null => false
+    t.integer  "width",                             :null => false
+    t.integer  "height",                            :null => false
     t.text     "exif"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "rating_sum",         :default => 0
+    t.integer  "rating_count",       :default => 0
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "photo_metadata_id", :null => false
+    t.integer  "value",             :null => false
+    t.datetime "created_at"
   end
 
   create_table "users", :force => true do |t|
