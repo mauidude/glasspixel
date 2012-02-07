@@ -4,7 +4,7 @@ describe PhotoMetadata do
 
   subject { Factory :photo_metadata }
 
-  it { should belong_to :brand }
+    it { should belong_to :brand }
   it { should belong_to :camera }
   it { should belong_to :lens }
   it { should have_many :ratings }
@@ -19,8 +19,8 @@ describe PhotoMetadata do
   it { should allow_mass_assignment_of :photo }
   it { should_not allow_mass_assignment_of :raw_exif }
 
-  it { should_not allow_mass_assignment_of :rating_sum }
-  it { should_not allow_mass_assignment_of :rating_count }
+  it { should_not allow_mass_assignment_of :ratings_sum }
+  it { should_not allow_mass_assignment_of :ratings_count }
 
   it { should have_attached_file(:photo) }
   it { should validate_attachment_presence(:photo) }
@@ -73,5 +73,21 @@ describe PhotoMetadata do
     subject { Factory :rated_photo_metadata }
 
     its (:rating) { should == 2.5 }
+  end
+
+
+  context "counter cache" do
+
+    it "should be increased when a rating is created" do
+      updated_at = subject.updated_at
+      rating = Rating.create(:value => 3, :photo_metadata => subject)
+
+
+      photo_metadata = subject.reload
+
+      photo_metadata.ratings_count.should == 1
+      photo_metadata.ratings_sum.should == rating.value
+      photo_metadata.updated_at.should == updated_at
+    end
   end
 end

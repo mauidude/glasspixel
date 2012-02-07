@@ -21,7 +21,7 @@ class PhotoMetadata < ActiveRecord::Base
                           :full => "800x800"
                         }
 
-  validates_attachment_presence :photo
+  validates_attachment_presence :photo, :on => :create
   validates_attachment_content_type :photo,
                                     :content_type => [ 'image/jpeg' ],
                                     :message => 'file must be a JPEG'
@@ -32,9 +32,6 @@ class PhotoMetadata < ActiveRecord::Base
 
   attr_accessible :photo
 
-
-  #before_validation :extract_exif_data, :on => :create
-
   def raw_exif
     extract_exif_data if @raw_exif.nil?
 
@@ -42,7 +39,7 @@ class PhotoMetadata < ActiveRecord::Base
   end
 
   def rating
-    rating_count == 0 ? 0 : (rating_sum / rating_count.to_f)
+    ratings_count == 0 ? 0 : (ratings_sum / ratings_count.to_f)
   end
 
   private

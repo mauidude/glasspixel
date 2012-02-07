@@ -17,5 +17,4 @@ describe Rating do
   it { should_not allow_value(6).for(:value) }
 
   it { should validate_presence_of :photo_metadata_id }
-
 end

@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(:version => 20120205212101) do
     t.datetime "photo_updated_at"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
-    t.integer  "rating_sum",         :default => 0
-    t.integer  "rating_count",       :default => 0
+    t.integer  "ratings_sum",        :default => 0, :null => false
+    t.integer  "ratings_count",      :default => 0, :null => false
   end
 
   create_table "ratings", :force => true do |t|
