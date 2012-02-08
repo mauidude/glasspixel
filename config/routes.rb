@@ -1,5 +1,12 @@
 Glasspixel::Application.routes.draw do
+  devise_for :admins
   devise_for :users
+
+  scope :only => [:new, :edit, :create, :update] do
+    namespace :admin do
+      resources :brands
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

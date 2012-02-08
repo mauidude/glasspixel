@@ -11,6 +11,8 @@ gem 'exifr', :git => "git://github.com/saravk/exifr.git"
 gem 'paperclip', '~> 2.5.0'
 gem 'devise'
 
+gem 'haml'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

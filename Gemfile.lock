@@ -64,6 +64,7 @@ GEM
     factory_girl_rails (1.6.0)
       factory_girl (~> 2.5.0)
       railties (>= 3.0.0)
+    haml (3.1.4)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.1)
@@ -153,6 +154,7 @@ DEPENDENCIES
   devise
   exifr!
   factory_girl_rails
+  haml
   jquery-rails
   paperclip (~> 2.5.0)
   rails (= 3.2.0)
